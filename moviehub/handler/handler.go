@@ -73,6 +73,10 @@ func (h *Handler) ListReviews(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	items, err := h.Store.ListReviews(r.Context(), movieID)
+	if errors.Is(err, store.ErrNotFound) {
+		writeError(w, http.StatusNotFound, "MOVIE_NOT_FOUND", "ไม่พบหนังเรื่องนี้")
+		return
+	}
 	if err != nil {
 		internal(w, err)
 		return

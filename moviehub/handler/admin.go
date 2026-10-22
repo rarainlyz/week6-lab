@@ -162,6 +162,14 @@ func (h *Handler) AdminCreateMovie(w http.ResponseWriter, r *http.Request) {
         writeError(w, http.StatusBadRequest, "BAD_JSON", "อ่านกล่อง JSON ไม่ออก")
         return
     }
+    if rawID := r.PathValue("id"); rawID != "" {
+        id, ok := pathID(r, "id")
+        if !ok || (req.ID != 0 && req.ID != id) {
+            writeError(w, http.StatusBadRequest, "BAD_ID", "เลขหนังใน URL และข้อมูลต้องตรงกัน")
+            return
+        }
+        req.ID = id
+    }
     if req.ID < 0 {
         writeError(w, http.StatusBadRequest, "BAD_ID", "เลขหนังต้องเป็น 0 (ให้ระบบออก) หรือเลขบวก")
         return

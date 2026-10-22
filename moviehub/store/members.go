@@ -23,8 +23,8 @@ type Member struct {
 func (s *Store) CreateMember(ctx context.Context, email, hash, name string) (Member, error) {
 	m := Member{Email: email, DisplayName: name}
 	err := s.Pool.QueryRow(ctx,
-		`INSERT INTO members (email, password_hash, display_name)
-         VALUES ($1, $2, $3)
+		`INSERT INTO members (email, password_hash, display_name, role)
+         VALUES ($1, $2, $3, 'member')
          RETURNING id, role`, email, hash, name).Scan(&m.ID, &m.Role)
 	var pgErr *pgconn.PgError
 	if errors.As(err, &pgErr) && pgErr.Code == "23505" {
@@ -92,4 +92,3 @@ func (s *Store) UpdateMemberRole(ctx context.Context, id int64, role string) (Me
 	}
 	return m, err
 }
-
