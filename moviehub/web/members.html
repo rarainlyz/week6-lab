@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8fcfa" />
+    <title>สมาชิก | หลังบ้าน MovieHub</title>
+    <link rel="stylesheet" href="/admin/assets/members.css" />
+    <script src="/admin/assets/members.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/admin/members">หลังบ้าน MovieHub</a>
+        <nav class="primary-nav" aria-label="เมนูหลังบ้าน">
+          <span class="nav-item">ภาพรวม</span>
+          <span class="nav-item">หนัง</span>
+          <a class="nav-item is-active" href="/admin/members" aria-current="page">สมาชิก</a>
+        </nav>
+        <button id="sign-out" class="sign-out" type="button" hidden>ออกจากระบบ</button>
+      </header>
+
+      <main>
+        <section id="login-panel" class="login-panel" hidden>
+          <div>
+            <h1>เข้าสู่ระบบ</h1>
+            <p class="subtitle">เข้าสู่ระบบด้วยบัญชีผู้ดูแลเพื่อจัดการสมาชิก</p>
+          </div>
+          <form id="login-form" class="login-form">
+            <label>
+              อีเมล
+              <input name="email" type="email" autocomplete="username" required />
+            </label>
+            <label>
+              รหัสผ่าน
+              <input name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button class="primary-button" type="submit">เข้าสู่ระบบ</button>
+          </form>
+          <p id="login-message" class="feedback" role="alert"></p>
+        </section>
+
+        <section id="members-panel" hidden>
+          <div class="page-heading">
+            <div>
+              <h1>สมาชิก</h1>
+              <p id="member-count" class="subtitle" aria-live="polite"></p>
+            </div>
+            <label class="search-field">
+              <span class="visually-hidden">ค้นหาชื่อหรืออีเมล</span>
+              <input id="member-search" type="search" placeholder="ค้นชื่อหรืออีเมล" autocomplete="off" />
+            </label>
+          </div>
+
+          <p id="page-message" class="feedback" role="status"></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">สมาชิก</th>
+                  <th scope="col">บทบาท</th>
+                  <th scope="col">สมัครเมื่อ</th>
+                  <th scope="col" class="action-heading">จัดการ</th>
+                </tr>
+              </thead>
+              <tbody id="member-rows"></tbody>
+            </table>
+            <p id="empty-state" class="empty-state" hidden>ไม่พบสมาชิกที่ค้นหา</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

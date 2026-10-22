@@ -29,7 +29,9 @@ CREATE TABLE members (
     email         TEXT NOT NULL,
     password_hash TEXT NOT NULL,
     display_name  TEXT NOT NULL,
-    role          TEXT NOT NULL DEFAULT 'member' CHECK (role IN ('member', 'admin'))
+    role          TEXT NOT NULL DEFAULT 'member' CHECK (role IN ('member', 'admin')),
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE UNIQUE INDEX members_email_lower_unique ON members (lower(email));
