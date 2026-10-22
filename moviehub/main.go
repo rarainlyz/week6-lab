@@ -66,11 +66,13 @@ func main() {
 		log.Fatal(err)
 	}
 	mux.HandleFunc("GET /admin", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "/admin/members", http.StatusFound)
+		http.Redirect(w, r, "/admin/dashboard", http.StatusFound)
 	})
-	mux.HandleFunc("GET /admin/members", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFileFS(w, r, web, "members.html")
-	})
+	for _, page := range []string{"dashboard", "movies", "members"} {
+		mux.HandleFunc("GET /admin/"+page, func(w http.ResponseWriter, r *http.Request) {
+			http.ServeFileFS(w, r, web, "admin.html")
+		})
+	}
 	mux.Handle("GET /admin/assets/", http.StripPrefix("/admin/assets/", http.FileServer(http.FS(web))))
 
 	origins := strings.Split(os.Getenv("ALLOWED_ORIGINS"), ",")

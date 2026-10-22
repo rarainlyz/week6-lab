@@ -7,13 +7,18 @@ CREATE TABLE genres (
 );
 
 CREATE TABLE movies (
-    id            BIGINT PRIMARY KEY,
-    title         TEXT NOT NULL,
-    title_th      TEXT,
-    release_date  DATE,
-    vote_average  NUMERIC(4,1) NOT NULL DEFAULT 0 CHECK (vote_average BETWEEN 0 AND 10),
-    popularity    NUMERIC(12,4) NOT NULL DEFAULT 0,
-    poster_path   TEXT
+    id                BIGINT PRIMARY KEY,
+    title             TEXT NOT NULL,
+    title_th          TEXT,
+    original_title    TEXT NOT NULL DEFAULT '',
+    original_language TEXT NOT NULL DEFAULT 'en',
+    overview          TEXT,
+    overview_th       TEXT,
+    release_date      DATE,
+    vote_average      NUMERIC(4,1) NOT NULL DEFAULT 0 CHECK (vote_average BETWEEN 0 AND 10),
+    popularity        NUMERIC(12,4) NOT NULL DEFAULT 0,
+    poster_path       TEXT,
+    updated_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE movie_genres (
@@ -61,6 +66,13 @@ CREATE TABLE wishlist_items (
     PRIMARY KEY (member_id, movie_id)
 );
 
+UPDATE movies SET original_title = title WHERE original_title = '';
+
+CREATE VIEW movie_vote_stats AS
+SELECT movie_id, count(*)::BIGINT AS vote_count, avg(score)::NUMERIC(4,1) AS vote_average
+FROM votes
+GROUP BY movie_id;
+
 CREATE INDEX movies_title_lower_idx ON movies (lower(title));
 CREATE INDEX movies_popularity_idx ON movies (popularity DESC);
 CREATE INDEX reviews_movie_created_idx ON reviews (movie_id, created_at DESC);
@@ -85,5 +97,13 @@ INSERT INTO genres (name_en, name_th) VALUES
     ('Thriller', 'ระทึกขวัญ'),
     ('War', 'สงคราม'),
     ('Western', 'ตะวันตก');
+
+ALTER TABLE members ENABLE ROW LEVEL SECURITY;
+ALTER TABLE movies ENABLE ROW LEVEL SECURITY;
+ALTER TABLE genres ENABLE ROW LEVEL SECURITY;
+ALTER TABLE movie_genres ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
+ALTER TABLE votes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE wishlist_items ENABLE ROW LEVEL SECURITY;
 
 COMMIT;

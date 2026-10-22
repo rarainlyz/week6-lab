@@ -266,6 +266,268 @@ tbody tr:last-child td {
   background: #0da673;
 }
 
+.heading-actions,
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.stat-card,
+.content-card {
+  border: 1px solid #e5eee9;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.stat-card {
+  padding: 16px;
+}
+
+.stat-label {
+  color: #72818a;
+  font-size: 0.77rem;
+}
+
+.stat-value {
+  margin-top: 8px;
+  color: #18252a;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.content-card {
+  min-width: 0;
+  padding: 16px;
+}
+
+.content-card h2,
+.modal h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.top-movie-list {
+  display: grid;
+  gap: 10px;
+}
+
+.top-movie {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.top-movie img,
+.poster-placeholder {
+  width: 38px;
+  height: 54px;
+  flex: 0 0 38px;
+  border-radius: 4px;
+  background: #edf3f0;
+  object-fit: cover;
+}
+
+.top-movie-info {
+  min-width: 0;
+}
+
+.top-movie-title {
+  overflow: hidden;
+  color: #233139;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-movie-meta {
+  margin-top: 3px;
+  color: #72818a;
+  font-size: 0.72rem;
+}
+
+.movie-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.movie-poster {
+  width: 30px;
+  height: 42px;
+  flex: 0 0 30px;
+  border-radius: 3px;
+  background: #edf3f0;
+  object-fit: cover;
+}
+
+.movie-title {
+  color: #233139;
+  font-weight: 600;
+}
+
+.action-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.action-cell .text-action + .text-action {
+  margin-left: 12px;
+}
+
+.text-action {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #15956a;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.text-action.danger {
+  color: #b42318;
+}
+
+.compact-button {
+  min-height: 38px;
+  padding: 0 13px;
+  white-space: nowrap;
+}
+
+.secondary-button,
+.danger-button,
+.icon-button {
+  min-height: 38px;
+  border: 1px solid #dce5e1;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #fff;
+  color: #46555b;
+  cursor: pointer;
+}
+
+.danger-button {
+  border-color: #b42318;
+  background: #b42318;
+  color: #fff;
+}
+
+.icon-button {
+  width: 36px;
+  min-height: 36px;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
+.modal {
+  width: min(100% - 32px, 680px);
+  max-height: min(90vh, 900px);
+  overflow: auto;
+  border: 0;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 24%);
+}
+
+.modal::backdrop {
+  background: rgb(16 25 26 / 60%);
+}
+
+.modal-form {
+  padding: 24px;
+}
+
+.modal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 6px;
+  color: #46555b;
+  font-size: 0.8rem;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #dce5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  color: #26343a;
+  font: inherit;
+}
+
+.form-grid textarea {
+  resize: vertical;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #12b981;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgb(18 185 129 / 12%);
+}
+
+.form-wide,
+.poster-preview-wrap {
+  grid-column: 1 / -1;
+}
+
+.poster-preview-wrap {
+  min-height: 0;
+}
+
+.poster-preview {
+  width: 90px;
+  max-height: 135px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.modal-actions {
+  margin-top: 20px;
+}
+
+.warning-text {
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.delete-impact {
+  color: #46555b;
+  line-height: 1.6;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -317,9 +579,30 @@ tbody tr:last-child td {
     flex-direction: column;
   }
 
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .heading-actions {
+    width: 100%;
+  }
+
   .search-field,
   .search-field input {
     width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-wide,
+  .poster-preview-wrap {
+    grid-column: auto;
   }
 
   th,

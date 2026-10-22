@@ -1,11 +1,13 @@
 BEGIN;
 
-INSERT INTO movies (id, title, title_th, release_date, vote_average, popularity, poster_path) VALUES
-    (1423191, 'Resident Evil', 'เรสซิเดนท์ อีวิล', DATE '2026-01-01', 7.3, 100, '/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg'),
-    (460458, 'Resident Evil: Welcome to Raccoon City', 'ผีชีวะ ปฐมบทแห่งเมืองผีดิบ', DATE '2022-01-01', 5.9, 90, '/bArhvjRHl535XMaSh9VjInF2mSZ.jpg')
+INSERT INTO movies (id, title, title_th, original_title, original_language, release_date, vote_average, popularity, poster_path) VALUES
+    (1423191, 'Resident Evil', 'เรสซิเดนท์ อีวิล', 'Resident Evil', 'en', DATE '2026-01-01', 7.3, 100, '/i7UyjfPio0VFHB9rBUZSFyhOoM8.jpg'),
+    (460458, 'Resident Evil: Welcome to Raccoon City', 'ผีชีวะ ปฐมบทแห่งเมืองผีดิบ', 'Resident Evil: Welcome to Raccoon City', 'en', DATE '2022-01-01', 5.9, 90, '/bArhvjRHl535XMaSh9VjInF2mSZ.jpg')
 ON CONFLICT (id) DO UPDATE SET
     title = EXCLUDED.title,
     title_th = EXCLUDED.title_th,
+    original_title = EXCLUDED.original_title,
+    original_language = EXCLUDED.original_language,
     release_date = EXCLUDED.release_date,
     vote_average = EXCLUDED.vote_average,
     popularity = EXCLUDED.popularity,
